@@ -40,3 +40,5 @@ Article.init(
     modelName: "article",
   }
 );
+
+module.exports = Article;
