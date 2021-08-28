@@ -11,9 +11,13 @@ router.get("/", async (req, res) => {
         },
       ],
     });
+
     const articles = allArticlesRaw.map((blog) => blog.get({ plain: true }));
+    const loggedIn = req.session.loggedIn;
+    // The follwoing code brings the log in state into views
     res.render("homepage", {
       articles,
+      loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
