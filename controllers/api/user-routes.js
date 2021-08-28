@@ -11,16 +11,46 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Create a new user
+// Create a new user (sign in route)
 router.post("/", async (req, res) => {
   try {
     const { username, password } = req.body;
-    const userPostedData = await User.create({
+    const dbUserData = await User.create({
       username,
       password,
     });
-    res.status(200).json(userPostedData);
-    res.redirect("/");
+    res.status(200).json(dbUserData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Log in existing user (log in route)
+router.post("/login", async (req, res) => {
+  try {
+    const dbUserData = await User.findOne({
+      where: { username: req.body.username },
+    });
+
+    if (!dbUserData) {
+      res
+        .status(400)
+        .json({ message: "Incorrect username or password. Please try again!" });
+      return;
+    }
+
+    const isPasswordValid = req.body.password === dbUserData.password;
+
+    if (!isPasswordValid) {
+      res
+        .status(400)
+        .json({ message: "Incorrect username or password. Please try again!" });
+      return;
+    }
+
+    res
+      .status(200)
+      .json({ user: dbUserData, message: "You are now logged in" });
   } catch (err) {
     res.status(500).json(err);
   }
