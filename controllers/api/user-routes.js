@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    const isPasswordValid = req.body.password === dbUserData.password;
+    const isPasswordValid = dbUserData.checkPassword(req.body.password); // need not await, as it is a sync method
 
     if (!isPasswordValid) {
       res
