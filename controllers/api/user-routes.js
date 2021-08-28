@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
       password,
     });
     res.status(200).json(userPostedData);
-    res.redirect("/dashboard");
+    res.redirect("/");
   } catch (err) {
     res.status(500).json(err);
   }
