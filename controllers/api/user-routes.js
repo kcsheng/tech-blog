@@ -19,6 +19,11 @@ router.post("/", async (req, res) => {
       username,
       password,
     });
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+    });
+
     res.status(200).json(dbUserData);
   } catch (err) {
     res.status(500).json(err);
@@ -47,6 +52,10 @@ router.post("/login", async (req, res) => {
         .json({ message: "Incorrect username or password. Please try again!" });
       return;
     }
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+    });
 
     res
       .status(200)
