@@ -33,7 +33,7 @@ app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.use(routes);
 sequelize.sync({ force: false }).then(() => {

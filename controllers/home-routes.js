@@ -24,6 +24,38 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/article/:id", async (req, res) => {
+  try {
+    const dbArticleData = await Article.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Comment,
+          attributes: ["id", "text", "commentor_id", "createdAt"],
+          include: [{ model: User, attributes: ["username"] }],
+        },
+      ],
+    });
+    const article = dbArticleData.get({ plain: true });
+    const comments = article.comments.map((comment) => {
+      return {
+        id: comment.id,
+        text: comment.text,
+        commentor: comment.user.username,
+        createdAt: comment.createdAt,
+      };
+    });
+    article.comments = comments;
+
+    res.render("article", { article });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get("/login", (req, res) => {
   res.render("login");
 });

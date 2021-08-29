@@ -1,0 +1,13 @@
+
+{{>fullArticle article}}
+
+<section class="p-2">
+  {{#each article.comments as |comment|}}
+    <div class="border my-2">
+      <p class="m-2">{{comment.text}}</p>
+      <p class="m-2">&mdash;
+        {{comment.commentor}},
+        {{format_date comment.createdAt}}</p>
+    </div>
+  {{/each}}
+</section>
