@@ -11,3 +11,17 @@
     </div>
   {{/each}}
 </section>
+
+{{#if loggedIn}}
+  <form class="commentForm">
+    <div class="form-group p-2">
+      <input type="hidden" id="loggedInUserId" value={{loggedInUserId}}/>
+      <input type="hidden" id="articleId" value={{article.id}}/>
+      <label for="commentInput">Post a comment:</label>
+      <textarea class="form-control" id="commentInput" rows="3"></textarea>
+      <button type="submit" class="btn btn-primary mt-2">Create a comment</button>
+    </div>
+  </form>
+  <script src="/js/comment.js"></script>
+{{/if}}
+

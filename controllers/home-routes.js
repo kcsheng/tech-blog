@@ -14,10 +14,12 @@ router.get("/", async (req, res) => {
 
     const articles = allArticlesRaw.map((blog) => blog.get({ plain: true }));
     const loggedIn = req.session.loggedIn;
+    const loggedInUserId = req.session.loggedInUserId;
     // The follwoing code brings the log in state into views
     res.render("homepage", {
       articles,
       loggedIn,
+      loggedInUserId,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -49,8 +51,11 @@ router.get("/article/:id", async (req, res) => {
       };
     });
     article.comments = comments;
-
-    res.render("article", { article });
+    const loggedIn = req.session.loggedIn;
+    const loggedInUserId = req.session.loggedInUserId;
+    console.log(loggedIn);
+    console.log(loggedInUserId);
+    res.render("article", { article, loggedIn, loggedInUserId });
   } catch (err) {
     res.status(500).json(err);
   }
