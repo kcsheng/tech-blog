@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, Article, Comment } = require("../models");
+const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
@@ -59,25 +60,21 @@ router.get("/article/:id", async (req, res) => {
   }
 });
 
-router.get("/dashboard", async (req, res) => {
-  if (!req.session.loggedIn) {
-    res.render("login");
-  } else {
-    try {
-      const userArticlesRaw = await Article.findAll({
-        where: { creator_id: req.session.loggedInUserId },
-      });
-      const articles = userArticlesRaw.map((blog) => blog.get({ plain: true }));
+router.get("/dashboard", withAuth, async (req, res) => {
+  try {
+    const userArticlesRaw = await Article.findAll({
+      where: { creator_id: req.session.loggedInUserId },
+    });
+    const articles = userArticlesRaw.map((blog) => blog.get({ plain: true }));
 
-      req.session.save(() => {
-        req.session.inDashboard = true;
-        const inDashboard = req.session.inDashboard;
-        const loggedIn = req.session.loggedIn;
-        res.render("dashboard", { articles, inDashboard, loggedIn });
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
+    req.session.save(() => {
+      req.session.inDashboard = true;
+      const inDashboard = req.session.inDashboard;
+      const loggedIn = req.session.loggedIn;
+      res.render("dashboard", { articles, inDashboard, loggedIn });
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
