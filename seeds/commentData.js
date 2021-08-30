@@ -12,7 +12,7 @@ const commentData = [
     commentor_id: 1,
   },
   {
-    text: "I don't agree what you write about that technology.",
+    text: "I agree with what you have written.",
     article_id: 1,
     commentor_id: 3,
   },

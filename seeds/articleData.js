@@ -2,21 +2,21 @@ const { Article } = require("../models");
 
 const articleData = [
   {
-    title: "How to master html",
+    title: "How to get good at javascript",
     content:
-      "Website design and development has changed significantly over the past decade to bring forth highly interactive and responsive user interfaces we see around the internet. Before a website goes live, designers and developers go through a rigorous process that involves planning, visual designing, development, and testing.",
+      "Aliquam viverra laoreet orci ut interdum. Aliquam diam augue, dictum convallis nisi at, egestas vehicula ligula. Integer enim sem, convallis sed urna ac, consectetur suscipit risus. Nulla sit amet semper ante. Aliquam erat volutpat. Sed aliquam arcu quis bibendum ultrices. Nunc consectetur nunc eget ante vestibulum accumsan. Cras iaculis faucibus mollis.",
     creator_id: 1,
   },
   {
     title: "How to master css",
     content:
-      "CSS is a very vast topic seems to be easy at first, but it becomes a pain in a head when you want to master it not for lack of tutorials but for lack of path or full curriculum to mastering it, here I am going to show you how to master CSS by following a curriculum contain very comprehensive resources from the internet, and sure it will be free.",
+      "vitae dictum velit. Nullam sodales luctus nibh, eget vehicula tellus tincidunt vel. Donec at ultrices odio. Ut ut dictum mi, sit amet iaculis dolor. Quisque mattis laoreet lorem, nec cursus ante fermentum non. Donec scelerisque auctor accumsan. Arra ac non mauris. Nam convallis ultrices diam vitae tristique. Donec sed feugiat eros. Aliquam sollicitudin",
     creator_id: 2,
   },
   {
-    title: "How to master javascript",
+    title: "How to learn HTML",
     content:
-      "JavaScript is an amazing programming language. It is most popular as the browser's programming language, but that does not mean that's all it is good for. It is used for much more...backend development, desktop development, machine learning, and many more.",
+      "Morbi tempus massa vitae libero aliquet sollicitudin. Vivamus urna nisi, laoreet et neque quis, commodo tempor enim. Vivamus iaculis pharetra massa eu efficitur. Praesent et lorem quis nisl ornare pharetrtae mauris placerat, at ultrices nunc iaculis. Integer urna sapien, lacinia nec lacinia in, hendrerit eu puru",
     creator_id: 3,
   },
 ];
