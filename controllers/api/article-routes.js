@@ -42,11 +42,29 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.get("/articles/add-form", async (req, res) => {
+router.get("/add-form", async (req, res) => {
   try {
     const loggedIn = req.session.loggedIn;
     const inDashboard = req.session.inDashboard;
     res.render("add", { loggedIn, inDashboard });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const { title, content } = req.body;
+    const creator_id = req.session.loggedInUserId;
+    const dbArticleData = await Article.create({
+      title,
+      content,
+      creator_id,
+    });
+    if (!dbArticleData) {
+      res.status(400).json({ message: "Input data invalid" });
+    }
+    res.status(200).json(dbArticleData);
   } catch (err) {
     res.status(500).json(err);
   }
