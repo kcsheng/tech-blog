@@ -1,6 +1,6 @@
 ## Tech Blog
 
-Tech Blog is a CMS-style blog site similar to Wordpress, where the bloggers can post articles while also being able to comment on other bloggers' content. This app follows MVC paradigm and is deployed [here]() in Heroku.
+Tech Blog is a CMS-style blog site similar to Wordpress, where the bloggers can post articles while also being able to comment on other bloggers' content. This app follows MVC paradigm and is deployed [here](https://shrouded-citadel-61326.herokuapp.com/) in Heroku.
 
 ### Technologies used
 
@@ -16,3 +16,11 @@ Express-handlebars (view template), sequelize (ORM), and express-session (authen
 - Live dashboard update following creating the post
 - Delete or update exising posts in the dashboard
 - Session time out
+
+### Demo
+
+![homescreen](./demo/homescreen.png)
+![signup](./demo/signup.png)
+![dashboard](./demo/dashboard.png)
+![editdelete](./demo/editdelete.png)
+![comment](./demo/comment.png)
