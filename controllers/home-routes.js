@@ -53,9 +53,41 @@ router.get("/article/:id", async (req, res) => {
     article.comments = comments;
     const loggedIn = req.session.loggedIn;
     const loggedInUserId = req.session.loggedInUserId;
-    console.log(loggedIn);
-    console.log(loggedInUserId);
     res.render("article", { article, loggedIn, loggedInUserId });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/dashboard", async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.render("login");
+  } else {
+    try {
+      const userArticlesRaw = await Article.findAll({
+        where: { creator_id: req.session.loggedInUserId },
+      });
+      const articles = userArticlesRaw.map((blog) => blog.get({ plain: true }));
+
+      req.session.save(() => {
+        req.session.inDashboard = true;
+        const inDashboard = req.session.inDashboard;
+        const loggedIn = req.session.loggedIn;
+        res.render("dashboard", { articles, inDashboard, loggedIn });
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+});
+
+router.get("/dashboard/article/:id", async (req, res) => {
+  try {
+    const dbArticleData = await Article.findByPk(req.params.id);
+    const article = dbArticleData.get({ plain: true });
+    const loggedIn = req.session.loggedIn;
+    const inDashboard = req.session.inDashboard;
+    res.render("edit", { article, loggedIn, inDashboard });
   } catch (err) {
     res.status(500).json(err);
   }

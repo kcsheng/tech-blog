@@ -6,9 +6,7 @@ const commentFormHandler = async (event) => {
   const commentor_id = document
     .querySelector("#loggedInUserId")
     .value.slice(0, -1);
-  console.log(text);
-  console.log(article_id);
-  console.log(commentor_id);
+
   if (text && article_id && commentor_id) {
     const response = await fetch("/api/comments", {
       method: "POST",

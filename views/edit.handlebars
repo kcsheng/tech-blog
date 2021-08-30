@@ -1,0 +1,23 @@
+<form class="editForm">
+  <div class="form-group p-2">
+    <input type="hidden" id="creator_id" value={{article.creator_id}} />
+    <input type="hidden" id="article_id" value={{article.id}} />
+    <label for="titleInput">TITLE</label>
+    <textarea
+      class="form-control"
+      id="title"
+      rows="1"
+    >{{article.title}}</textarea>
+    <label for="contentInput">CONTENT</label>
+    <textarea
+      class="form-control"
+      id="content"
+      rows="6"
+    >{{article.content}}</textarea>
+    <button class="btn btn-primary mt-2" id="button1" value="update">Update post</button>
+    <button class="btn btn-danger mt-2" id="button2" value="delete">Delete post</button>
+
+  </div>
+</form>
+
+<script src="/js/editAndDelete.js"></script>

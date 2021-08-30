@@ -2,14 +2,14 @@ const { Comment } = require("../../models");
 
 const router = require("express").Router();
 
-router.get("/", async (req, res) => {
-  try {
-    const allComments = await Comment.findAll();
-    res.status(200).json(allComments);
-  } catch (err) {
-    res.status500.json(err);
-  }
-});
+// router.get("/", async (req, res) => {
+//   try {
+//     const allComments = await Comment.findAll();
+//     res.status(200).json(allComments);
+//   } catch (err) {
+//     res.status500.json(err);
+//   }
+// });
 
 router.post("/", async (req, res) => {
   try {
